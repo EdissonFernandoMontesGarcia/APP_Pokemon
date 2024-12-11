@@ -5,10 +5,12 @@ import {map, capitalize} from 'lodash';
 export default function Stats(props) {
     const {stats} = props;
     const barStyles = (num) =>{
+      const color = num > 49 ? '#00ac17' : '#ff3e3e'
       return{
-        backgroundColor:'#ff3e3e',
-        with:'${num}%'
+        backgroundColor: color,
+        width:`${num}%`, 
       }
+     
     }
   return (
     <View style={styles.content}>
@@ -21,7 +23,7 @@ export default function Stats(props) {
         <View style={styles.blockInfo}>
           <Text style={styles.number}>{item.base_stat} </Text>
           <View style={styles.bgBar}>
-            <View style={styles.bar}/>
+            <View style={[styles.bar, barStyles(item.base_stat)]}/>
           </View>
         </View>
        </View>
@@ -69,8 +71,8 @@ const styles =StyleSheet.create({
     overflow:'hidden',
   },
   bar:{
-    backgroundColor:'red',
-    width:'100%',
+    //backgroundColor:'red',
+    //width:'100%',
     height:5,
     borderRadius: 20,
   },
